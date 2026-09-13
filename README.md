@@ -29,7 +29,9 @@ _(depois do deploy, cole aqui a URL da Vercel — ex: `https://elo-escolas.verce
 
 ```
 .
-├── index.html   # aplicação completa (HTML + CSS + JS em um único arquivo)
+├── index.html
+├──script.js
+├──style.css
 └── README.md
 ```
 
@@ -58,25 +60,6 @@ git remote add origin <URL_DO_SEU_REPOSITORIO_NO_GITHUB>
 git push -u origin main
 ```
 
-## Deploy na Vercel
-
-**Opção A — pelo site (mais simples):**
-
-1. Acesse [vercel.com](https://vercel.com) e faça login com sua conta do GitHub.
-2. Clique em **Add New → Project**.
-3. Selecione o repositório que você acabou de subir.
-4. Em _Framework Preset_, deixe **Other** — é site estático, não precisa de build.
-5. Clique em **Deploy**.
-
-Em menos de um minuto a Vercel gera uma URL pública (`https://seu-projeto.vercel.app`) e, a cada `git push` na branch principal, atualiza o site automaticamente.
-
-**Opção B — pelo terminal, sem passar pelo GitHub:**
-
-```bash
-npm install -g vercel   # instala a CLI da Vercel globalmente
-vercel login             # autentica com sua conta
-vercel --prod             # builda e publica a versão de produção
-```
 
 ## Aviso
 
