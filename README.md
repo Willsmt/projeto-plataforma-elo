@@ -6,7 +6,7 @@ A plataforma conecta escolas para compartilhamento de recursos, registro de proj
 
 ## Demo
 
-_(depois do deploy, cole aqui a URL da Vercel — ex: `https://elo-escolas.vercel.app`)_
+_(https://projeto-plataforma-elo.vercel.app/#visao)_
 
 ## Funcionalidades
 
