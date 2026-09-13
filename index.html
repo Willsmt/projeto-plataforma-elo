@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elo — Rede de Integração entre Instituições de Ensino</title>
+<meta name="description" content="Protótipo da plataforma Elo: compartilhamento de recursos, projetos replicáveis, atividades conjuntas e oportunidades entre escolas brasileiras.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <div class="brand"><span class="brand__mark" aria-hidden="true"></span>Elo</div>
+    <nav class="navtabs" id="navtabs" aria-label="Seções da plataforma">
+      <button class="navlink" data-view="visao">Visão geral</button>
+      <button class="navlink" data-view="mapa">Mapa da rede</button>
+      <button class="navlink" data-view="recursos">Recursos</button>
+      <button class="navlink" data-view="projetos">Projetos</button>
+      <button class="navlink" data-view="atividades">Atividades</button>
+      <button class="navlink" data-view="oportunidades">Oportunidades</button>
+    </nav>
+    <div class="livecount"><span class="livecount__dot" aria-hidden="true"></span><span id="livecount-text">carregando…</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- VISÃO GERAL -->
+  <section class="view" id="view-visao">
+    <div class="hero">
+      <div>
+        <h1>Nenhuma escola deveria reinventar a roda sozinha.</h1>
+        <p class="lede">Elo conecta escolas públicas e privadas para que laboratórios, livros, projetos e vagas em feiras e olimpíadas circulem entre instituições — em vez de ficarem parados numa só.</p>
+        <div class="hero__ctas">
+          <button class="btn btn--primary" data-view-link="mapa">Explorar o mapa da rede</button>
+          <button class="btn btn--ghost" data-view-link="recursos">Ver recursos disponíveis</button>
+        </div>
+      </div>
+      <div class="hero__art">
+        <svg id="hero-network" viewBox="0 0 340 420" role="img" aria-label="Mapa esquemático das escolas conectadas na rede Elo"></svg>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__num">10%</div>
+        <div class="stat__label">dos estabelecimentos de ensino têm laboratório de Ciências</div>
+        <div class="stat__src">Fonte: Anuário Brasileiro da Educação Básica, 2024</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">44,5%</div>
+        <div class="stat__label">das escolas públicas com internet realmente adequada ao uso pedagógico</div>
+        <div class="stat__src">Fonte: Anuário Brasileiro da Educação Básica, 2025</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">~130</div>
+        <div class="stat__label">olimpíadas científicas ativas no Brasil, sem um canal único de divulgação</div>
+        <div class="stat__src">Fonte: Ibict, citado em reportagens sobre olimpíadas científicas</div>
+      </div>
+    </div>
+
+    <section class="block">
+      <div class="block__head">
+        <h2>Como a rede funciona</h2>
+        <p>Quatro eixos, conectados numa única plataforma — hoje resolvidos por iniciativas isoladas, como o MEC RED (conteúdo digital) ou o remanejamento de livros do FNDE.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="card__title">Recursos compartilhados</div>
+          <p class="card__desc">Laboratórios, livros e espaços ociosos numa escola ficam visíveis para quem precisa deles.</p>
+        </div>
+        <div class="card card--violet">
+          <div class="card__title">Projetos replicáveis</div>
+          <p class="card__desc">Um projeto que deu certo numa escola vira um roteiro pronto para outra adaptar.</p>
+        </div>
+        <div class="card card--coral">
+          <div class="card__title">Atividades conjuntas</div>
+          <p class="card__desc">Feiras, olimpíadas e mostras organizadas entre várias escolas, não só dentro de uma.</p>
+        </div>
+        <div class="card card--sky">
+          <div class="card__title">Oportunidades</div>
+          <p class="card__desc">Editais, bolsas e olimpíadas reunidos num só lugar, com prazo visível.</p>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- MAPA -->
+  <section class="view" id="view-mapa">
+    <section class="block">
+      <div class="block__head">
+        <h2>Mapa da rede</h2>
+        <p>Escolas participantes espalhadas pelo país. Clique num ponto do mapa ou da lista para ver o que cada escola oferece e o que ela precisa.</p>
+      </div>
+      <div class="mapgrid">
+        <div id="map-canvas" role="application" aria-label="Mapa interativo com as escolas participantes da rede"></div>
+        <div class="panel" id="school-panel">
+          <p class="muted">Selecione uma escola no mapa ou na lista ao lado para ver os detalhes.</p>
+          <ul class="schoollist" id="school-list"></ul>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- RECURSOS -->
+  <section class="view" id="view-recursos">
+    <section class="block">
+      <div class="block__head">
+        <h2>Recursos compartilhados</h2>
+        <p>Materiais, equipamentos e espaços que uma instituição oferece — ou está buscando com outra escola da rede.</p>
+      </div>
+      <div class="filters">
+        <input type="search" id="recurso-busca" placeholder="Buscar recurso…" aria-label="Buscar recurso">
+        <select id="recurso-categoria" aria-label="Filtrar por categoria">
+          <option value="todas">Todas as categorias</option>
+        </select>
+        <select id="recurso-status" aria-label="Filtrar por status">
+          <option value="todas">Disponível e buscando parceria</option>
+          <option value="Disponível">Só disponíveis</option>
+          <option value="Buscando parceria">Só buscando parceria</option>
+        </select>
+        <span class="filters__count" id="recurso-count"></span>
+      </div>
+      <div id="recurso-schoolchip" style="margin:-10px 0 16px"></div>
+      <div class="grid" id="recurso-grid"></div>
+    </section>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="view" id="view-projetos">
+    <section class="block">
+      <div class="block__head">
+        <h2>Projetos replicáveis</h2>
+        <p>Iniciativas pedagógicas que já funcionaram numa escola e estão documentadas para outra adaptar à sua realidade.</p>
+      </div>
+      <div class="filters">
+        <input type="search" id="projeto-busca" placeholder="Buscar projeto…" aria-label="Buscar projeto">
+        <select id="projeto-area" aria-label="Filtrar por área">
+          <option value="todas">Todas as áreas</option>
+        </select>
+        <span class="filters__count" id="projeto-count"></span>
+      </div>
+      <div class="grid" id="projeto-grid"></div>
+    </section>
+  </section>
+
+  <!-- ATIVIDADES -->
+  <section class="view" id="view-atividades">
+    <section class="block">
+      <div class="block__head">
+        <h2>Atividades conjuntas</h2>
+        <p>Feiras, olimpíadas e mostras organizadas entre várias escolas da rede. Passe o cursor sobre os círculos para ver quem participa.</p>
+      </div>
+      <div class="timeline" id="event-list"></div>
+    </section>
+  </section>
+
+  <!-- OPORTUNIDADES -->
+  <section class="view" id="view-oportunidades">
+    <section class="block">
+      <div class="block__head">
+        <h2>Oportunidades para estudantes</h2>
+        <p>Olimpíadas, feiras nacionais e bolsas reunidas num só lugar, com o prazo de inscrição sempre visível.</p>
+      </div>
+      <div class="grid" id="opp-grid"></div>
+    </section>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Elo é um protótipo fictício desenvolvido para o Projeto Integrador — Senac EAD, Tecnologia em Análise e Desenvolvimento de Sistemas. Escolas, dados de recursos, projetos e eventos são exemplos ilustrativos.</div>
+    <p class="fine">Estatísticas da seção "Visão geral" citam o Anuário Brasileiro da Educação Básica (Todos pela Educação, 2024–2025). Mapa com camada CARTO Dark Matter sobre dados OpenStreetMap.</p>
+  </div>
+</footer>
+
+<div id="toast-container" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
