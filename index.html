@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elo — Rede de Integração entre Instituições de Ensino</title>
-<meta name="description" content="Protótipo da plataforma Elo: compartilhamento de recursos, projetos replicáveis, atividades conjuntas e oportunidades entre escolas brasileiras.">
+<title>EducaRede — Plataforma de Integração Educacional</title>
+<meta name="description" content="Protótipo da plataforma EducaRede: compartilhamento de recursos, projetos replicáveis, atividades conjuntas e oportunidades entre escolas brasileiras.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 
 <header class="topbar">
   <div class="topbar__inner">
-    <div class="brand"><span class="brand__mark" aria-hidden="true"></span>Elo</div>
+    <a class="brand" href="#visao" data-view-link="visao"><img src="assets/logo-educarede-dark.png" alt="EducaRede — Plataforma de Integração Educacional" width="640" height="190"></a>
     <nav class="navtabs" id="navtabs" aria-label="Seções da plataforma">
       <button class="navlink" data-view="visao">Visão geral</button>
       <button class="navlink" data-view="mapa">Mapa da rede</button>
@@ -34,15 +34,16 @@
   <section class="view" id="view-visao">
     <div class="hero">
       <div>
-        <h1>Nenhuma escola deveria reinventar a roda sozinha.</h1>
-        <p class="lede">Elo conecta escolas públicas e privadas para que laboratórios, livros, projetos e vagas em feiras e olimpíadas circulem entre instituições — em vez de ficarem parados numa só.</p>
+        <p class="kicker">Conhecimento para todos</p>
+        <h1>Nenhuma escola deveria reinventar a roda <em>sozinha.</em></h1>
+        <p class="lede">A EducaRede conecta escolas públicas e privadas para que laboratórios, livros, projetos e vagas em feiras e olimpíadas circulem entre instituições — em vez de ficarem parados numa só.</p>
         <div class="hero__ctas">
           <button class="btn btn--primary" data-view-link="mapa">Explorar o mapa da rede</button>
           <button class="btn btn--ghost" data-view-link="recursos">Ver recursos disponíveis</button>
         </div>
       </div>
       <div class="hero__art">
-        <svg id="hero-network" viewBox="0 0 340 420" role="img" aria-label="Mapa esquemático das escolas conectadas na rede Elo"></svg>
+        <svg id="hero-network" viewBox="0 0 340 420" role="img" aria-label="Mapa esquemático das escolas conectadas na EducaRede"></svg>
       </div>
     </div>
 
@@ -65,9 +66,15 @@
     </div>
 
     <section class="block">
-      <div class="block__head">
-        <h2>Como a rede funciona</h2>
-        <p>Quatro eixos, conectados numa única plataforma — hoje resolvidos por iniciativas isoladas, como o MEC RED (conteúdo digital) ou o remanejamento de livros do FNDE.</p>
+      <div class="block__head block__head--edu">
+        <div>
+          <h2>Como a rede funciona</h2>
+          <p>Quatro eixos, conectados numa única plataforma — hoje resolvidos por iniciativas isoladas, como o MEC RED (conteúdo digital) ou o remanejamento de livros do FNDE.</p>
+        </div>
+        <aside class="edu-note">
+          <img src="assets/edu-avatar.jpg" alt="" width="240" height="240">
+          <p><strong>Oi, eu sou o Edu!</strong> Escolhe um eixo aí embaixo que eu te mostro como cada escola participa.</p>
+        </aside>
       </div>
       <div class="grid">
         <div class="card">
@@ -175,7 +182,7 @@
 
 <footer>
   <div class="wrap">
-    <div>Elo é um protótipo fictício desenvolvido para o Projeto Integrador — Senac EAD, Tecnologia em Análise e Desenvolvimento de Sistemas. Escolas, dados de recursos, projetos e eventos são exemplos ilustrativos.</div>
+    <div>EducaRede é um protótipo fictício desenvolvido para o Projeto Integrador — Senac EAD, Tecnologia em Análise e Desenvolvimento de Sistemas. Escolas, dados de recursos, projetos e eventos são exemplos ilustrativos.</div>
     <p class="fine">Estatísticas da seção "Visão geral" citam o Anuário Brasileiro da Educação Básica (Todos pela Educação, 2024–2025). Mapa com camada CARTO Dark Matter sobre dados OpenStreetMap.</p>
   </div>
 </footer>

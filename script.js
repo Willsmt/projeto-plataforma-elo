@@ -131,6 +131,7 @@
   /* ================= HERO NETWORK ART ================= */
   function renderHeroNetwork(){
     var svg = document.getElementById('hero-network');
+    if (!svg) return;
     var hubs = {};
     events.forEach(function(e){ hubs[e.hostId] = true; });
 
@@ -145,7 +146,7 @@
 
     var nodes = schools.map(function(s){
       var ringClass = hubs[s.id] ? 'net-node__ring pulse' : 'net-node__ring';
-      return '<g class="net-node" data-id="'+s.id+'" tabindex="0" role="button" aria-label="'+s.name+'">'+
+      return '<g class="net-node'+(hubs[s.id] ? ' hub' : '')+'" data-id="'+s.id+'" tabindex="0" role="button" aria-label="'+s.name+'">'+
         '<circle class="'+ringClass+'" cx="'+s.x+'" cy="'+s.y+'" r="9"></circle>'+
         '<circle class="net-node__dot" cx="'+s.x+'" cy="'+s.y+'" r="4"></circle>'+
         '</g>';
@@ -170,6 +171,11 @@
 
   /* ================= MAPA ================= */
   function initMap(){
+    if (typeof L === 'undefined'){
+      document.getElementById('map-canvas').innerHTML = '<div class="empty">Não foi possível carregar o mapa. Verifique a conexão.</div>';
+      renderSchoolList();
+      return;
+    }
     map = L.map('map-canvas', { zoomControl:true, scrollWheelZoom:false }).setView([-14.2,-51.9], 4);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap &copy; CARTO',
@@ -198,7 +204,7 @@
       var li = el('li');
       var btn = el('button','schoolrow'+(state.activeSchool===s.id?' active':''),
         '<span>'+s.name+'</span><small>'+s.region+'</small>');
-      btn.addEventListener('click', function(){ selectSchool(s.id); map.flyTo([s.lat,s.lon], 6, {duration:.6}); });
+      btn.addEventListener('click', function(){ selectSchool(s.id); if (map) map.flyTo([s.lat,s.lon], 6, {duration:.6}); });
       li.appendChild(btn);
       list.appendChild(li);
     });

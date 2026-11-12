@@ -1,20 +1,22 @@
   :root{
-    --bg: #0F1B1D;
-    --bg-2: #0C1618;
-    --surface: #16282C;
-    --surface-2: #1D3338;
-    --border: rgba(237,239,233,0.12);
-    --border-strong: rgba(237,239,233,0.22);
-    --ink: #EDEFE9;
-    --ink-dim: #9FB4B0;
-    --ink-faint: #6E8480;
+    /* EducaRede: azul-marinho como base, azul da marca para a rede, amarelo e laranja como destaque */
+    --bg: #0A1B38;
+    --bg-2: #081530;
+    --surface: #10264A;
+    --surface-2: #17325C;
+    --border: rgba(226,234,248,0.11);
+    --border-strong: rgba(226,234,248,0.22);
+    --ink: #EEF2FA;
+    --ink-dim: #A9B8D3;
+    --ink-faint: #7A8DB0;
 
-    --brand: #5FC7A3;
-    --brand-ink: #0B1F1A;
-    --amber: #E8B94E;
-    --violet: #9C8CE8;
-    --coral: #E8738A;
-    --sky: #5FB8E8;
+    --brand: #4F8EF7;
+    --brand-ink: #071430;
+    --amber: #F5B400;
+    --orange: #F28C1B;
+    --violet: #A495F0;
+    --coral: #F07A8C;
+    --sky: #5FC2F0;
 
     --radius: 10px;
     --radius-sm: 6px;
@@ -57,7 +59,7 @@
   /* ---------- Topbar ---------- */
   .topbar{
     position: sticky; top:0; z-index: 40;
-    background: rgba(15,27,29,0.92);
+    background: rgba(10,27,56,0.92);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
@@ -65,17 +67,9 @@
     max-width: var(--maxw); margin:0 auto; padding: 14px 28px;
     display:flex; align-items:center; gap: 28px;
   }
-  .brand{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Fraunces',serif; font-weight:700; font-size:1.25rem;
-    white-space: nowrap;
-  }
-  .brand__mark{
-    width: 26px; height: 26px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, var(--brand), #2c6f5a);
-    box-shadow: 0 0 0 3px rgba(95,199,163,0.18);
-    flex: none;
-  }
+  .brand{ display:flex; align-items:center; flex:none; }
+  .brand img{ height: 40px; width:auto; display:block; }
+  @media (max-width: 560px){ .brand img{ height: 32px; } }
   nav.navtabs{
     display:flex; gap: 4px; overflow-x:auto; scrollbar-width:none;
     flex:1;
@@ -100,15 +94,15 @@
   }
   .livecount__dot{
     width:7px; height:7px; border-radius:50%; background: var(--brand);
-    box-shadow: 0 0 0 0 rgba(95,199,163,.6);
+    box-shadow: 0 0 0 0 rgba(79,142,247,.6);
     animation: livepulse 2s ease-out infinite;
   }
   @keyframes livepulse{
-    0%{ box-shadow: 0 0 0 0 rgba(95,199,163,.5); }
-    70%{ box-shadow: 0 0 0 6px rgba(95,199,163,0); }
-    100%{ box-shadow: 0 0 0 0 rgba(95,199,163,0); }
+    0%{ box-shadow: 0 0 0 0 rgba(79,142,247,.5); }
+    70%{ box-shadow: 0 0 0 6px rgba(79,142,247,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(79,142,247,0); }
   }
-  @media (max-width: 860px){
+  @media (max-width: 1400px){
     .livecount{ display:none; }
   }
 
@@ -121,10 +115,16 @@
     padding: 64px 0 48px;
     display:grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items:center;
   }
+  .kicker{
+    display:flex; align-items:center; gap:12px; margin:0 0 18px;
+    font-size:.8rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color: var(--amber);
+  }
+  .kicker::before{ content:""; width:32px; height:2px; background: var(--amber); }
   .hero h1{
     font-size: clamp(2.1rem, 4.4vw, 3.4rem);
     letter-spacing: -0.01em;
   }
+  .hero h1 em{ font-style: italic; font-weight: 600; color: var(--amber); }
   .hero .lede{ font-size:1.08rem; color: var(--ink-dim); max-width: 46ch; }
   .hero__ctas{ display:flex; gap:12px; margin-top: 24px; flex-wrap:wrap; }
 
@@ -136,8 +136,8 @@
     transition: transform .12s ease, background .15s ease, border-color .15s ease;
   }
   .btn:active{ transform: scale(.97); }
-  .btn--primary{ background: var(--brand); color: var(--brand-ink); }
-  .btn--primary:hover{ background:#78d4b3; }
+  .btn--primary{ background: var(--amber); color: var(--brand-ink); }
+  .btn--primary:hover{ background:#FFC933; }
   .btn--ghost{ background: transparent; color: var(--ink); border-color: var(--border-strong); }
   .btn--ghost:hover{ border-color: var(--brand); color: var(--brand); }
   .btn--sm{ padding: 7px 14px; font-size:.85rem; }
@@ -148,6 +148,8 @@
   .net-node__ring{ fill:none; stroke: var(--brand); opacity:.3; }
   .net-node__ring.pulse{ animation: ringpulse 2.6s ease-in-out infinite; }
   .net-node__dot{ fill: var(--brand); cursor:pointer; }
+  .net-node.hub .net-node__dot{ fill: var(--amber); }
+  .net-node.hub .net-node__ring{ stroke: var(--amber); }
   .net-node{ cursor:pointer; }
   .net-node text{ display:none; }
   @keyframes dashmove{ to{ stroke-dashoffset: -160; } }
@@ -177,6 +179,21 @@
   section.block{ padding: 20px 0 64px; }
   .block__head{ margin-bottom: 28px; max-width: 66ch; }
   .block__head h2{ font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  .block__head--edu{
+    max-width:none; display:grid; grid-template-columns: minmax(0,66ch) minmax(240px,320px);
+    gap: 40px; align-items:end; justify-content:space-between;
+  }
+  .edu-note{
+    display:flex; gap:14px; align-items:center;
+    padding: 14px 16px; border:1px dashed var(--border-strong); border-radius: var(--radius);
+  }
+  .edu-note img{
+    width:56px; height:56px; border-radius:50%; flex:none;
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--amber);
+  }
+  .edu-note p{ margin:0; font-size:.88rem; }
+  .edu-note strong{ color: var(--ink); font-family:'Fraunces',serif; font-weight:600; }
+  @media (max-width: 860px){ .block__head--edu{ grid-template-columns: 1fr; gap:18px; } }
 
   /* ---------- Filters ---------- */
   .filters{
@@ -213,8 +230,8 @@
     font-size:.72rem; font-weight:600; padding:3px 9px; border-radius:999px;
     white-space:nowrap; border:1px solid var(--border-strong);
   }
-  .pill--ok{ color: var(--brand); border-color: rgba(95,199,163,.4); background: rgba(95,199,163,.08); }
-  .pill--wait{ color: var(--amber); border-color: rgba(232,185,78,.4); background: rgba(232,185,78,.08); }
+  .pill--ok{ color: var(--brand); border-color: rgba(79,142,247,.45); background: rgba(79,142,247,.10); }
+  .pill--wait{ color: var(--amber); border-color: rgba(245,180,0,.45); background: rgba(245,180,0,.09); }
 
   .card__school{
     font-size:.85rem; color: var(--ink-dim); background:none; border:none;
@@ -245,7 +262,7 @@
   .map-pin{ position:relative; width:18px; height:18px; }
   .map-pin__dot{
     position:absolute; left:5px; top:5px; width:8px; height:8px; border-radius:50%;
-    background: var(--brand); box-shadow: 0 0 0 2px rgba(15,27,29,.8);
+    background: var(--brand); box-shadow: 0 0 0 2px rgba(10,27,56,.85);
   }
   .map-pin__ring{
     position:absolute; left:0; top:0; width:18px; height:18px; border-radius:50%;
@@ -281,8 +298,8 @@
     display:inline-block; font-size:.82rem; padding:6px 11px; border-radius: 8px;
     margin: 0 6px 6px 0; border:1px solid var(--border-strong);
   }
-  .chip--offer{ color: var(--brand); border-color: rgba(95,199,163,.4); background: rgba(95,199,163,.07); }
-  .chip--need{ color: var(--amber); border-color: rgba(232,185,78,.4); background: rgba(232,185,78,.07); }
+  .chip--offer{ color: var(--brand); border-color: rgba(79,142,247,.45); background: rgba(79,142,247,.09); }
+  .chip--need{ color: var(--amber); border-color: rgba(245,180,0,.45); background: rgba(245,180,0,.08); }
 
   .schoollist{ list-style:none; margin: 18px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
   .schoolrow{
@@ -292,7 +309,7 @@
     font-family:inherit; font-size:.88rem; text-align:left; width:100%;
   }
   .schoolrow:hover{ background: var(--surface-2); }
-  .schoolrow.active{ border-color: var(--brand); background: rgba(95,199,163,.08); }
+  .schoolrow.active{ border-color: var(--brand); background: rgba(79,142,247,.10); }
   .schoolrow small{ color: var(--ink-faint); font-weight:400; }
 
   @media (max-width: 900px){
@@ -327,10 +344,10 @@
 
   /* ---------- Oportunidades ---------- */
   .opp{
-    background: var(--surface); border:1px solid var(--border); border-left:4px solid var(--sky);
+    background: var(--surface); border:1px solid var(--border); border-left:4px solid var(--orange);
     border-radius: var(--radius-sm); padding: 18px; display:flex; flex-direction:column; gap:8px;
   }
-  .opp__deadline{ font-size:.8rem; font-weight:600; color: var(--sky); }
+  .opp__deadline{ font-size:.8rem; font-weight:600; color: var(--orange); }
   .opp__deadline.urgent{ color: var(--coral); }
   .opp__deadline.closed{ color: var(--ink-faint); }
 
